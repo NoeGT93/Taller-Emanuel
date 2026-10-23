@@ -1,5 +1,79 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taller Emanuel · POS</title><style>
 :root{font-family:Arial,sans-serif;color:#364a60;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button{background:#506684;color:white;border:0;border-radius:8px;padding:11px 14px}.mint{background:#a7dfcb;color:#205842}.light{background:#e8eef4;color:#48637f}.card{background:white;border:1px solid #e2e9f0;border-radius:14px;padding:20px;margin-bottom:16px}#gate{max-width:440px;margin:10vh auto;padding:20px}label{display:grid;gap:6px;font-size:12px;margin:13px 0}input,select{border:1px solid #d8e0e9;background:white;padding:11px;border-radius:8px;width:100%}.hidden{display:none!important}header{background:#506684;color:white;padding:18px 24px;display:flex;justify-content:space-between}main{padding:22px;max-width:1280px;margin:auto}nav{display:flex;gap:8px;overflow:auto;padding-bottom:18px}nav button{background:#e8eef4;color:#506684;white-space:nowrap}nav button.on{background:#506684;color:white}h1{font-size:23px;margin:0 0 7px}h2{font-size:18px;margin:0 0 15px}.muted{font-size:12px;color:#8291a1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}.sale{display:grid;grid-template-columns:1fr 300px;gap:16px}.product{border:1px solid #e2e7ed;border-radius:12px;padding:13px}.product strong{display:block;margin:8px 0}.product button{float:right}.line{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid #ebeff3;padding:10px 0;font-size:12px}.total{font-size:25px;font-weight:800;text-align:right;margin:22px 0}table{width:100%;border-collapse:collapse;min-width:560px}th,td{text-align:left;border-bottom:1px solid #edf0f3;padding:11px;font-size:12px}.scroll{overflow:auto}.modalback{position:fixed;inset:0;background:#1d293ca0;display:grid;place-items:center;padding:16px}.modal{background:white;border-radius:14px;width:min(450px,100%);padding:24px;max-height:90vh;overflow:auto}.actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}.alert{padding:14px;border-radius:10px;background:#fff1dd;color:#755219;font-size:12px;line-height:1.6}#message{position:fixed;right:16px;bottom:16px;background:#324458;color:white;border-radius:10px;padding:15px;max-width:330px;display:none}@media(max-width:800px){.sale{grid-template-columns:1fr}main{padding:12px}header{padding:15px}.grid{grid-template-columns:repeat(2,1fr)}}
+
+
+/* Gravity Studios · Taller Emanuel · rediseño de interfaz */
+:root{--bg:#eef2f6;--primary:#506684;--primary-light:#e8eef5;--mint:#a7dfcb;--text:#2d4158;--muted:#7b8da0;--line:#dfe7ef;--radius:17px;--shadow:0 12px 28px rgba(39,60,84,.055)}
+body{background:var(--bg)!important;color:var(--text)!important;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif!important}
+#application{min-height:100vh!important;padding-left:245px!important;display:block!important}
+#application.hidden{display:none!important}
+header{position:fixed!important;inset:0 auto 0 0!important;width:245px!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;gap:28px!important;background:linear-gradient(170deg,#59718f,#445c79)!important;padding:29px 16px!important;z-index:20!important;box-shadow:6px 0 24px rgba(33,48,69,.06)}
+header>div:first-child{font-size:20px!important;font-weight:800!important;line-height:1.2!important;padding:0 12px!important;letter-spacing:.025em!important}
+header>div:first-child>div{margin-top:7px!important;font-size:11px!important;opacity:.7!important;font-weight:500!important}
+header>div:last-child{margin-top:auto!important;padding:14px 12px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:14px!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:13px!important;font-size:12px!important;line-height:1.5!important}
+header #signout{background:rgba(255,255,255,.15)!important;color:#fff!important}
+main{max-width:1500px!important;padding:27px 30px!important;margin:0 auto!important}
+nav{position:fixed!important;left:16px!important;top:122px!important;z-index:22!important;width:212px!important;display:flex!important;flex-direction:column!important;gap:6px!important;padding:0!important;overflow:visible!important}
+nav button{border:0!important;background:transparent!important;color:#dbe5f1!important;border-radius:11px!important;font-size:13px!important;text-align:left!important;padding:13px 15px!important;display:flex!important;align-items:center!important;gap:9px!important;font-weight:600!important;white-space:normal!important;transition:background .18s,transform .18s!important}
+nav button:hover,nav button.on{background:rgba(255,255,255,.17)!important;color:#fff!important;transform:translateX(1px)!important}
+nav button::before{content:'◈';opacity:.8}
+nav button:nth-child(1)::before{content:'⌂'}
+nav button:nth-child(2)::before{content:'▣'}
+nav button:nth-child(3)::before{content:'◇'}
+nav button:nth-child(4)::before{content:'○'}
+nav button:nth-child(5)::before{content:'▤'}
+nav button:nth-child(6)::before{content:'↗'}
+nav button:nth-child(7)::before{content:'⇩'}
+nav button:nth-child(8)::before{content:'♙'}
+nav button:nth-child(9)::before{content:'⌁'}
+h1,h2{color:#2e435a!important;letter-spacing:-.025em!important}
+h2{font-size:20px!important}
+.card{background:#fff!important;border:1px solid var(--line)!important;border-radius:var(--radius)!important;box-shadow:var(--shadow)!important;padding:20px!important}
+.grid{gap:14px!important}
+.grid>.card{min-height:132px!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+.grid>.card h1{font-size:30px!important;margin-top:13px!important}
+.muted{color:var(--muted)!important;font-size:12px!important}
+button{border-radius:11px!important;padding:11px 15px!important;background:var(--primary)!important;color:white!important;font-weight:650!important;transition:filter .15s,transform .15s}
+button:hover{filter:brightness(1.04);transform:translateY(-1px)}
+button:disabled{opacity:.4!important;cursor:not-allowed}
+button.light{background:var(--primary-light)!important;color:var(--primary)!important}
+button.mint{background:var(--mint)!important;color:#28604e!important}
+input,select{background:#fff!important;border:1px solid #dae3ec!important;border-radius:11px!important;padding:12px 13px!important;color:var(--text)!important;outline:none}
+input:focus,select:focus{border-color:#93a9c2!important;box-shadow:0 0 0 3px rgba(80,102,132,.09)}
+table{min-width:640px!important}
+th{background:#f8fafc!important;font-size:11px!important;color:#8493a5!important;letter-spacing:.02em}
+td,th{padding:15px!important;border-bottom:1px solid #edf1f5!important}
+.scroll{border-radius:var(--radius)!important}
+.sale{grid-template-columns:minmax(0,1fr) 345px!important;gap:17px!important;align-items:start!important}
+.sale>div:first-child>.card{display:flex!important;gap:10px!important;align-items:center!important;padding:15px!important}
+.sale>div:first-child>.card #find{flex:1!important;min-width:0!important}
+.sale>div:first-child>.card #vehicle{width:165px!important}
+.sale>div:first-child>.grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))!important;gap:12px!important}
+.product{background:white!important;border:1px solid var(--line)!important;border-radius:16px!important;box-shadow:var(--shadow)!important;padding:17px!important;min-height:167px!important;transition:transform .15s,box-shadow .15s!important}
+.product:hover{transform:translateY(-2px);box-shadow:0 13px 29px rgba(39,60,84,.09)!important}
+.product:before{content:'⚙';display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:#eaf1f8;color:#506684;font-size:20px;margin-bottom:11px}
+.product strong{font-size:13px!important;line-height:1.45!important;min-height:34px}
+.product p{font-size:11px!important;min-height:29px}
+.product>span:last-of-type{font-size:17px!important;font-weight:850!important}
+.product button{border-radius:9px!important;margin-left:8px!important}
+.sale>.card{position:sticky!important;top:22px!important;min-height:420px!important;padding:22px!important}
+.sale>.card h2{font-size:21px!important;margin-bottom:5px!important}
+.sale>.card>.line{background:#fbfcfd!important;margin:8px 0!important;border:1px solid #e7edf3!important;border-radius:11px!important;padding:12px!important}
+.sale>.card>.total{font-size:29px!important;color:#2c4158!important;border-top:1px dashed #dbe4ee;padding-top:20px!important}
+.sale>.card>button:last-child{width:100%!important;margin-top:10px!important;padding:15px!important;font-size:15px!important}
+.line{padding:12px 0!important;border-bottom-color:#e9eef3!important}
+#gate{min-height:100vh!important;padding:20px!important;background:linear-gradient(180deg,#516987 0%,#516987 190px,#eef2f6 190px)!important;display:grid!important;place-items:center!important;max-width:none!important;margin:0!important}
+#gate.hidden{display:none!important}
+#gate>h1,#gate>p{color:white!important}
+#gate>form,#gate>div{max-width:490px!important;width:100%}
+#gate input{width:100%!important}
+#overlay .modalback{backdrop-filter:blur(3px)}
+#overlay .modal{border-radius:20px!important;padding:28px!important;box-shadow:0 30px 70px rgba(22,37,52,.25)!important}
+#message{border-radius:13px!important;box-shadow:0 15px 35px rgba(34,49,66,.2)!important}
+@media(max-width:1200px){.sale{grid-template-columns:1fr!important}.sale>.card{position:static!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:840px){#application{padding-left:0!important}header{position:static!important;width:auto!important;inset:auto!important;flex-direction:row!important;justify-content:space-between!important;align-items:center!important;padding:14px 18px!important}header>div:first-child{font-size:16px!important;padding:0!important}header>div:last-child{margin:0!important;border:0!important;padding:0!important;flex-direction:row!important;align-items:center!important}nav{position:static!important;width:100%!important;display:flex!important;flex-direction:row!important;overflow-x:auto!important;background:#516987!important;padding:10px 13px!important;gap:6px!important}nav button{white-space:nowrap!important;padding:10px 12px!important;font-size:12px!important}main{padding:15px!important}.sale{grid-template-columns:1fr!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:530px){header>div:last-child{font-size:0!important}header #signout{font-size:12px!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.grid>.card{padding:14px!important;min-height:105px!important}.grid>.card h1{font-size:21px!important}.sale>div:first-child>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.sale>div:first-child>.card{flex-direction:column!important}.sale>div:first-child>.card #find,.sale>div:first-child>.card #vehicle{width:100%!important}.product{padding:12px!important}.product:before{width:32px;height:32px;font-size:16px}.product strong{font-size:12px!important}.product>span:last-of-type{font-size:14px!important}td,th{padding:11px!important}}
+
 </style></head><body>
 <div id="gate" class="card"><h1>Taller Emanuel</h1><p class="muted">Sistema de ventas y control de repuestos</p><div id="configuration"><p class="alert">Para operar, vincula Supabase. Solo usa la clave pública anon o publishable; nunca una clave secreta.</p><form id="configForm"><label>URL Supabase<input name="url" type="url" placeholder="https://xxxx.supabase.co" required></label><label>Clave pública<input name="key" required></label><button>Conectar</button></form></div><form id="signin" class="hidden"><label>Correo<input name="email" type="email" required></label><label>Contraseña<input name="password" type="password" required></label><button>Iniciar sesión</button><button type="button" class="light" id="resetConfig">Cambiar conexión</button></form></div>
 <div id="application" class="hidden"><header><div><b>TALLER EMANUEL</b><div style="font-size:11px;opacity:.7">Repuestos · Punto de venta</div></div><div><span id="identity"></span> <button id="signout" class="light">Salir</button></div></header><main><nav id="nav"></nav><section id="content"></section></main></div><div id="overlay"></div><div id="message"></div>
