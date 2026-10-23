@@ -1,27 +1,30 @@
-# Taller Emanuel — Repuestos POS
+# Repuestos POS — prototipo final interactivo
 
-Sistema de punto de venta para repuestos de tuc tucs, motocicletas y vehículos.
+Interfaz responsive para un comercio de repuestos de tuc tucs, motocicletas y vehículos. Paleta azul grisáceo, verde menta y coral. Moneda: quetzales.
 
-## Estado
+## Funciones probables en esta DEMOSTRACIÓN
 
-**Prototipo interactivo — pendiente de cargar el paquete de código fuente.**
+- Nueva venta y carrito, búsqueda, lectura por escáner USB/Bluetooth (emula teclado) y cámara cuando BarcodeDetector está disponible.
+- Filtro por línea y modelo, altas/edición de artículos y existencias; bloqueo de ventas sin stock.
+- Cobros de demostración en efectivo, tarjeta, transferencia y crédito con validación de recibido y cálculo de cambio.
+- Descuentos en quetzales, asociación de clientes, tickets imprimibles y número secuencial.
+- Movimientos de caja, apertura, cierre con conteo, compras (entrada de existencias), gastos, clientes y límites de crédito.
+- Dashboard, alertas de existencias, resumen de ventas y exportación CSV de ventas.
+- Importación básica CSV de productos, respaldo JSON, almacenamiento `localStorage`, funcionamiento PWA en navegadores compatibles.
+- Adaptación de escritorio, tablet y móvil; F1 venta, F2 cobro, F4 inventario.
 
-El paquete del prototipo final fue generado en la conversación de Gravity Studios, pero los archivos locales del chat todavía no se han transferido a este repositorio. No utilizar esta rama como implementación en producción.
+## Puesta en marcha
 
-## Componentes previstos
+Abre una terminal dentro de la carpeta y ejecuta:
 
-- Caja y venta de repuestos; lectura de QR y códigos de barras en dispositivos compatibles.
-- Inventario, compatibilidad por modelo, entradas por compra y alertas de stock.
-- Clientes, gastos, movimientos de caja, cierre, tickets y reportes.
-- Vista responsive para escritorio, tablet y móvil.
-- Datos de demostración almacenados en el navegador.
+    python3 -m http.server 8080
 
-## Instrucciones de desarrollo
+Visita http://localhost:8080 (en móvil utiliza un servidor HTTPS para cámara y PWA).
 
-Una vez incorporado el contenido del ZIP `repuestos-pos-final.zip`, colocar los archivos que están dentro de `repuestos-pos-prototype/` en la raíz del repositorio. Después ejecutar `python3 -m http.server 8080` y visitar `http://localhost:8080`.
+CSV: encabezado `code,name,category,type,compat,cost,price,stock,min`, valores sin comas internas. `type` debe ser `moto`, `tuctuc` o `auto`.
 
-## Advertencia
+## Límites importantes
 
-El prototipo no cuenta con backend, base de datos compartida, autenticación real, facturación FEL ni cobros procesados. No está listo para producción.
+**No es software de producción.** La información se almacena *solo en el navegador y dispositivo actuales*. No proporciona acceso multiusuario, sincronización entre cajeros, backend, base de datos de servidor, auditoría, seguridad de acceso, emisión de facturas FEL, validación de impuestos, integraciones bancarias ni respaldos automáticos. Los tickets son comprobantes demostrativos, no facturas fiscales. Los cobros no procesan pagos reales. Los datos iniciales de catálogo son ficticios.
 
-Desarrollo conceptual: Gravity Studios.
+Para llevarlo a operación comercial habrá que desarrollar backend transaccional, control de usuarios/permisos, inventario concurrente, bitácora, mecanismos confiables de backup/restauración, integraciones con hardware e implementar las obligaciones fiscales vigentes en Guatemala.
