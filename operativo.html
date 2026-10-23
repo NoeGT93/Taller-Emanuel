@@ -74,6 +74,75 @@ td,th{padding:15px!important;border-bottom:1px solid #edf1f5!important}
 @media(max-width:840px){#application{padding-left:0!important}header{position:static!important;width:auto!important;inset:auto!important;flex-direction:row!important;justify-content:space-between!important;align-items:center!important;padding:14px 18px!important}header>div:first-child{font-size:16px!important;padding:0!important}header>div:last-child{margin:0!important;border:0!important;padding:0!important;flex-direction:row!important;align-items:center!important}nav{position:static!important;width:100%!important;display:flex!important;flex-direction:row!important;overflow-x:auto!important;background:#516987!important;padding:10px 13px!important;gap:6px!important}nav button{white-space:nowrap!important;padding:10px 12px!important;font-size:12px!important}main{padding:15px!important}.sale{grid-template-columns:1fr!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:530px){header>div:last-child{font-size:0!important}header #signout{font-size:12px!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.grid>.card{padding:14px!important;min-height:105px!important}.grid>.card h1{font-size:21px!important}.sale>div:first-child>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.sale>div:first-child>.card{flex-direction:column!important}.sale>div:first-child>.card #find,.sale>div:first-child>.card #vehicle{width:100%!important}.product{padding:12px!important}.product:before{width:32px;height:32px;font-size:16px}.product strong{font-size:12px!important}.product>span:last-of-type{font-size:14px!important}td,th{padding:11px!important}}
 
+
+/* Gravity Studios — Editorial POS v3 — visual system only */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--primary:#354c66;--primary-light:#eaf0f6;--mint:#a2dfcb;--bg:#f1f4f7;--ink:#25384f;--soft:#75869a;--stroke:#e4eaf0;--rose:#eb9c94;--gold:#f3d78e;--elev:0 8px 28px rgba(43,62,85,.045)}
+html,body{font-family:'DM Sans',sans-serif!important;background:var(--bg)!important;color:var(--ink)!important}
+#application{background:var(--bg)!important}
+header{background:#394f6b!important;border-right:1px solid #4d6480!important;padding:31px 17px!important}
+header>div:first-child{font-family:Manrope,sans-serif!important;font-weight:800!important;font-size:20px!important;line-height:1.25!important;letter-spacing:-.045em!important}
+header>div:first-child::before{content:'TE';display:grid;place-items:center;font-size:15px;letter-spacing:-.08em;color:#274e47;background:#a6ddc8;border-radius:12px;width:45px;height:45px;margin:0 0 24px;box-shadow:0 9px 24px rgba(15,31,50,.16)}
+header>div:last-child{background:rgba(255,255,255,.07)!important;border:1px solid rgba(255,255,255,.09)!important}
+header #signout{border:1px solid rgba(255,255,255,.14)!important}
+nav{top:156px!important}
+nav button{padding:13px 16px!important;border-radius:12px!important;font-weight:600!important;font-size:13px!important;letter-spacing:.005em!important}
+nav button.on{background:#a2dfcb!important;color:#284f48!important;box-shadow:0 8px 18px rgba(18,38,52,.12)!important}
+nav button.on::before{color:#31584f!important}
+nav button:hover:not(.on){background:rgba(255,255,255,.12)!important}
+main{max-width:1490px!important;padding:33px 38px!important}
+h1,h2,h3{font-family:Manrope,sans-serif!important;letter-spacing:-.045em!important;color:#25384f!important}
+h2{font-size:24px!important;font-weight:800!important;margin-bottom:17px!important}
+.card{background:#fff!important;border:1px solid #e6ecf1!important;box-shadow:0 7px 28px rgba(40,60,80,.048)!important;border-radius:19px!important}
+.grid{gap:17px!important}
+.grid>.card{min-height:160px!important;position:relative!important;overflow:hidden!important;padding:25px!important;justify-content:flex-start!important}
+.grid>.card::after{content:'';position:absolute;top:22px;right:22px;width:43px;height:43px;border-radius:14px;background:#ecf3f8}
+.grid>.card:nth-child(1)::after{background:#dff4eb}
+.grid>.card:nth-child(2)::after{background:#e7edf7}
+.grid>.card:nth-child(3)::after{background:#f9eed4}
+.grid>.card:nth-child(4)::after{background:#fae5e4}
+.grid>.card:before{position:absolute;right:36px;top:31px;z-index:1;color:#4f7b71;font-size:20px;font-weight:700;content:'↗'}
+.grid>.card:nth-child(2):before{content:'▤';color:#536e92}
+.grid>.card:nth-child(3):before{content:'◈';color:#aa833c}
+.grid>.card:nth-child(4):before{content:'!';color:#c27974}
+.grid>.card .muted{font-size:12px!important;color:#788a9c!important;font-weight:600!important}
+.grid>.card h1{font-size:31px!important;margin:19px 0 0!important;color:#283f58!important;line-height:1.08!important}
+h2+ .card{margin-top:14px!important}
+button{font-size:12px!important;letter-spacing:.005em!important;font-weight:700!important;border-radius:11px!important;padding:12px 16px!important;box-shadow:none!important}
+button.mint{background:#a2dfcb!important;color:#265b4c!important}
+button.light{background:#edf2f6!important;color:#48647f!important}
+button:not(.light):not(.mint):not(.on){background:#4c6583!important;color:#fff!important}
+nav button:not(.on){background:transparent!important;color:#d9e4ef!important}
+nav button.on{background:#a2dfcb!important;color:#284f48!important}
+table{border-collapse:separate!important;border-spacing:0!important}
+th{padding:17px!important;background:#f7f9fb!important;text-transform:uppercase!important;letter-spacing:.065em!important;font-size:10px!important;color:#92a0ae!important}
+td{padding:19px 17px!important;color:#53657a!important;font-size:12px!important}
+tr:last-child td{border-bottom:0!important}
+.scroll{overflow:hidden!important;overflow-x:auto!important}
+#content>h2{margin-top:20px!important}
+.sale>div:first-child>.card{border:1px solid #e4eaf0!important;padding:17px!important;box-shadow:var(--elev)!important}
+#find{height:50px!important;padding-left:18px!important;font-size:13px!important}
+#vehicle{height:50px!important;font-size:12px!important}
+.product{background:#fff!important;border:1px solid #e5ecf2!important;border-radius:19px!important;min-height:205px!important;padding:20px!important;display:flex!important;flex-direction:column!important}
+.product:before{content:'◈';background:#e9f0f7!important;width:47px!important;height:47px!important;border-radius:15px!important;box-sizing:border-box;color:#547395!important;font-size:22px!important;margin-bottom:16px!important}
+.product .muted{color:#92a0af!important;font-size:11px!important}
+.product strong{margin:11px 0 3px!important;font-size:13px!important;color:#2e4159!important;line-height:1.48!important;min-height:39px!important;font-weight:750!important}
+.product p{line-height:1.5!important;font-size:11px!important;color:#8a9aab!important;margin:2px 0 12px!important}
+.product>span:last-of-type{margin-top:auto!important;font-size:18px!important;color:#2b4056!important}
+.product button{width:37px!important;height:37px!important;padding:0!important;background:#a4dfca!important;border-radius:11px!important;color:#285d4f!important;font-size:19px!important;display:grid!important;place-items:center!important}
+.sale>.card{border-radius:20px!important;padding:26px!important;border:1px solid #e4eaf0!important;box-shadow:0 14px 40px rgba(41,60,79,.07)!important}
+.sale>.card h2{font-size:23px!important}
+.sale>.card>.line{background:#f8fafb!important;border:1px solid #e7edf2!important;padding:15px!important;border-radius:13px!important;color:#53677d!important}
+.sale>.card>.total{font-size:32px!important;font-family:Manrope,sans-serif!important;letter-spacing:-.055em!important}
+.sale>.card>button:last-child{background:#a2dfcb!important;color:#255b4c!important;font-size:14px!important;min-height:50px!important}
+#gate{background:linear-gradient(180deg,#394f6b 0%,#394f6b 245px,#f1f4f7 245px)!important}
+#gate>form,#gate>div{background:#fff!important;border:1px solid #e5ebf1!important;border-radius:21px!important;padding:20px!important;box-shadow:0 18px 40px rgba(35,49,66,.12)!important}
+#gate>h1{font-size:30px!important;font-family:Manrope,sans-serif!important}
+#overlay .modal{border:1px solid #e7ebef!important}
+#overlay .modal h2{font-size:23px!important}
+@media(max-width:840px){header{background:#394f6b!important;padding:15px!important}header>div:first-child::before{display:none!important}main{padding:18px!important}nav{top:auto!important;background:#394f6b!important}nav button.on{background:#a2dfcb!important;color:#284f48!important}.grid>.card{min-height:128px!important;padding:18px!important}.grid>.card h1{font-size:24px!important}.grid>.card::after{width:35px;height:35px;top:12px;right:12px}.grid>.card:before{right:24px;top:19px;font-size:15px}.product{min-height:190px!important;padding:15px!important}}
+@media(max-width:520px){.grid>.card{min-height:115px!important}.grid>.card h1{font-size:20px!important}.sale>.card{padding:18px!important}.product{min-height:190px!important}.product:before{width:40px!important;height:40px!important}.product strong{font-size:12px!important}}
+
 </style></head><body>
 <div id="gate" class="card"><h1>Taller Emanuel</h1><p class="muted">Sistema de ventas y control de repuestos</p><div id="configuration"><p class="alert">Para operar, vincula Supabase. Solo usa la clave pública anon o publishable; nunca una clave secreta.</p><form id="configForm"><label>URL Supabase<input name="url" type="url" placeholder="https://xxxx.supabase.co" required></label><label>Clave pública<input name="key" required></label><button>Conectar</button></form></div><form id="signin" class="hidden"><label>Correo<input name="email" type="email" required></label><label>Contraseña<input name="password" type="password" required></label><button>Iniciar sesión</button><button type="button" class="light" id="resetConfig">Cambiar conexión</button></form></div>
 <div id="application" class="hidden"><header><div><b>TALLER EMANUEL</b><div style="font-size:11px;opacity:.7">Repuestos · Punto de venta</div></div><div><span id="identity"></span> <button id="signout" class="light">Salir</button></div></header><main><nav id="nav"></nav><section id="content"></section></main></div><div id="overlay"></div><div id="message"></div>
