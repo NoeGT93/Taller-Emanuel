@@ -1,152 +1,102 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taller Emanuel · POS</title><style>
-:root{font-family:Arial,sans-serif;color:#364a60;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button{background:#506684;color:white;border:0;border-radius:8px;padding:11px 14px}.mint{background:#a7dfcb;color:#205842}.light{background:#e8eef4;color:#48637f}.card{background:white;border:1px solid #e2e9f0;border-radius:14px;padding:20px;margin-bottom:16px}#gate{max-width:440px;margin:10vh auto;padding:20px}label{display:grid;gap:6px;font-size:12px;margin:13px 0}input,select{border:1px solid #d8e0e9;background:white;padding:11px;border-radius:8px;width:100%}.hidden{display:none!important}header{background:#506684;color:white;padding:18px 24px;display:flex;justify-content:space-between}main{padding:22px;max-width:1280px;margin:auto}nav{display:flex;gap:8px;overflow:auto;padding-bottom:18px}nav button{background:#e8eef4;color:#506684;white-space:nowrap}nav button.on{background:#506684;color:white}h1{font-size:23px;margin:0 0 7px}h2{font-size:18px;margin:0 0 15px}.muted{font-size:12px;color:#8291a1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}.sale{display:grid;grid-template-columns:1fr 300px;gap:16px}.product{border:1px solid #e2e7ed;border-radius:12px;padding:13px}.product strong{display:block;margin:8px 0}.product button{float:right}.line{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid #ebeff3;padding:10px 0;font-size:12px}.total{font-size:25px;font-weight:800;text-align:right;margin:22px 0}table{width:100%;border-collapse:collapse;min-width:560px}th,td{text-align:left;border-bottom:1px solid #edf0f3;padding:11px;font-size:12px}.scroll{overflow:auto}.modalback{position:fixed;inset:0;background:#1d293ca0;display:grid;place-items:center;padding:16px}.modal{background:white;border-radius:14px;width:min(450px,100%);padding:24px;max-height:90vh;overflow:auto}.actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}.alert{padding:14px;border-radius:10px;background:#fff1dd;color:#755219;font-size:12px;line-height:1.6}#message{position:fixed;right:16px;bottom:16px;background:#324458;color:white;border-radius:10px;padding:15px;max-width:330px;display:none}@media(max-width:800px){.sale{grid-template-columns:1fr}main{padding:12px}header{padding:15px}.grid{grid-template-columns:repeat(2,1fr)}}
-
-
-/* Gravity Studios · Taller Emanuel · rediseño de interfaz */
-:root{--bg:#eef2f6;--primary:#506684;--primary-light:#e8eef5;--mint:#a7dfcb;--text:#2d4158;--muted:#7b8da0;--line:#dfe7ef;--radius:17px;--shadow:0 12px 28px rgba(39,60,84,.055)}
-body{background:var(--bg)!important;color:var(--text)!important;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif!important}
-#application{min-height:100vh!important;padding-left:245px!important;display:block!important}
-#application.hidden{display:none!important}
-header{position:fixed!important;inset:0 auto 0 0!important;width:245px!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;gap:28px!important;background:linear-gradient(170deg,#59718f,#445c79)!important;padding:29px 16px!important;z-index:20!important;box-shadow:6px 0 24px rgba(33,48,69,.06)}
-header>div:first-child{font-size:20px!important;font-weight:800!important;line-height:1.2!important;padding:0 12px!important;letter-spacing:.025em!important}
-header>div:first-child>div{margin-top:7px!important;font-size:11px!important;opacity:.7!important;font-weight:500!important}
-header>div:last-child{margin-top:auto!important;padding:14px 12px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:14px!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:13px!important;font-size:12px!important;line-height:1.5!important}
-header #signout{background:rgba(255,255,255,.15)!important;color:#fff!important}
-main{max-width:1500px!important;padding:27px 30px!important;margin:0 auto!important}
-nav{position:fixed!important;left:16px!important;top:122px!important;z-index:22!important;width:212px!important;display:flex!important;flex-direction:column!important;gap:6px!important;padding:0!important;overflow:visible!important}
-nav button{border:0!important;background:transparent!important;color:#dbe5f1!important;border-radius:11px!important;font-size:13px!important;text-align:left!important;padding:13px 15px!important;display:flex!important;align-items:center!important;gap:9px!important;font-weight:600!important;white-space:normal!important;transition:background .18s,transform .18s!important}
-nav button:hover,nav button.on{background:rgba(255,255,255,.17)!important;color:#fff!important;transform:translateX(1px)!important}
-nav button::before{content:'◈';opacity:.8}
-nav button:nth-child(1)::before{content:'⌂'}
-nav button:nth-child(2)::before{content:'▣'}
-nav button:nth-child(3)::before{content:'◇'}
-nav button:nth-child(4)::before{content:'○'}
-nav button:nth-child(5)::before{content:'▤'}
-nav button:nth-child(6)::before{content:'↗'}
-nav button:nth-child(7)::before{content:'⇩'}
-nav button:nth-child(8)::before{content:'♙'}
-nav button:nth-child(9)::before{content:'⌁'}
-h1,h2{color:#2e435a!important;letter-spacing:-.025em!important}
-h2{font-size:20px!important}
-.card{background:#fff!important;border:1px solid var(--line)!important;border-radius:var(--radius)!important;box-shadow:var(--shadow)!important;padding:20px!important}
-.grid{gap:14px!important}
-.grid>.card{min-height:132px!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
-.grid>.card h1{font-size:30px!important;margin-top:13px!important}
-.muted{color:var(--muted)!important;font-size:12px!important}
-button{border-radius:11px!important;padding:11px 15px!important;background:var(--primary)!important;color:white!important;font-weight:650!important;transition:filter .15s,transform .15s}
-button:hover{filter:brightness(1.04);transform:translateY(-1px)}
-button:disabled{opacity:.4!important;cursor:not-allowed}
-button.light{background:var(--primary-light)!important;color:var(--primary)!important}
-button.mint{background:var(--mint)!important;color:#28604e!important}
-input,select{background:#fff!important;border:1px solid #dae3ec!important;border-radius:11px!important;padding:12px 13px!important;color:var(--text)!important;outline:none}
-input:focus,select:focus{border-color:#93a9c2!important;box-shadow:0 0 0 3px rgba(80,102,132,.09)}
-table{min-width:640px!important}
-th{background:#f8fafc!important;font-size:11px!important;color:#8493a5!important;letter-spacing:.02em}
-td,th{padding:15px!important;border-bottom:1px solid #edf1f5!important}
-.scroll{border-radius:var(--radius)!important}
-.sale{grid-template-columns:minmax(0,1fr) 345px!important;gap:17px!important;align-items:start!important}
-.sale>div:first-child>.card{display:flex!important;gap:10px!important;align-items:center!important;padding:15px!important}
-.sale>div:first-child>.card #find{flex:1!important;min-width:0!important}
-.sale>div:first-child>.card #vehicle{width:165px!important}
-.sale>div:first-child>.grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))!important;gap:12px!important}
-.product{background:white!important;border:1px solid var(--line)!important;border-radius:16px!important;box-shadow:var(--shadow)!important;padding:17px!important;min-height:167px!important;transition:transform .15s,box-shadow .15s!important}
-.product:hover{transform:translateY(-2px);box-shadow:0 13px 29px rgba(39,60,84,.09)!important}
-.product:before{content:'⚙';display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:#eaf1f8;color:#506684;font-size:20px;margin-bottom:11px}
-.product strong{font-size:13px!important;line-height:1.45!important;min-height:34px}
-.product p{font-size:11px!important;min-height:29px}
-.product>span:last-of-type{font-size:17px!important;font-weight:850!important}
-.product button{border-radius:9px!important;margin-left:8px!important}
-.sale>.card{position:sticky!important;top:22px!important;min-height:420px!important;padding:22px!important}
-.sale>.card h2{font-size:21px!important;margin-bottom:5px!important}
-.sale>.card>.line{background:#fbfcfd!important;margin:8px 0!important;border:1px solid #e7edf3!important;border-radius:11px!important;padding:12px!important}
-.sale>.card>.total{font-size:29px!important;color:#2c4158!important;border-top:1px dashed #dbe4ee;padding-top:20px!important}
-.sale>.card>button:last-child{width:100%!important;margin-top:10px!important;padding:15px!important;font-size:15px!important}
-.line{padding:12px 0!important;border-bottom-color:#e9eef3!important}
-#gate{min-height:100vh!important;padding:20px!important;background:linear-gradient(180deg,#516987 0%,#516987 190px,#eef2f6 190px)!important;display:grid!important;place-items:center!important;max-width:none!important;margin:0!important}
-#gate.hidden{display:none!important}
-#gate>h1,#gate>p{color:white!important}
-#gate>form,#gate>div{max-width:490px!important;width:100%}
-#gate input{width:100%!important}
-#overlay .modalback{backdrop-filter:blur(3px)}
-#overlay .modal{border-radius:20px!important;padding:28px!important;box-shadow:0 30px 70px rgba(22,37,52,.25)!important}
-#message{border-radius:13px!important;box-shadow:0 15px 35px rgba(34,49,66,.2)!important}
-@media(max-width:1200px){.sale{grid-template-columns:1fr!important}.sale>.card{position:static!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:840px){#application{padding-left:0!important}header{position:static!important;width:auto!important;inset:auto!important;flex-direction:row!important;justify-content:space-between!important;align-items:center!important;padding:14px 18px!important}header>div:first-child{font-size:16px!important;padding:0!important}header>div:last-child{margin:0!important;border:0!important;padding:0!important;flex-direction:row!important;align-items:center!important}nav{position:static!important;width:100%!important;display:flex!important;flex-direction:row!important;overflow-x:auto!important;background:#516987!important;padding:10px 13px!important;gap:6px!important}nav button{white-space:nowrap!important;padding:10px 12px!important;font-size:12px!important}main{padding:15px!important}.sale{grid-template-columns:1fr!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:530px){header>div:last-child{font-size:0!important}header #signout{font-size:12px!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.grid>.card{padding:14px!important;min-height:105px!important}.grid>.card h1{font-size:21px!important}.sale>div:first-child>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.sale>div:first-child>.card{flex-direction:column!important}.sale>div:first-child>.card #find,.sale>div:first-child>.card #vehicle{width:100%!important}.product{padding:12px!important}.product:before{width:32px;height:32px;font-size:16px}.product strong{font-size:12px!important}.product>span:last-of-type{font-size:14px!important}td,th{padding:11px!important}}
-
-
-/* Gravity Studios — Editorial POS v3 — visual system only */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
-:root{--primary:#354c66;--primary-light:#eaf0f6;--mint:#a2dfcb;--bg:#f1f4f7;--ink:#25384f;--soft:#75869a;--stroke:#e4eaf0;--rose:#eb9c94;--gold:#f3d78e;--elev:0 8px 28px rgba(43,62,85,.045)}
-html,body{font-family:'DM Sans',sans-serif!important;background:var(--bg)!important;color:var(--ink)!important}
-#application{background:var(--bg)!important}
-header{background:#394f6b!important;border-right:1px solid #4d6480!important;padding:31px 17px!important}
-header>div:first-child{font-family:Manrope,sans-serif!important;font-weight:800!important;font-size:20px!important;line-height:1.25!important;letter-spacing:-.045em!important}
-header>div:first-child::before{content:'TE';display:grid;place-items:center;font-size:15px;letter-spacing:-.08em;color:#274e47;background:#a6ddc8;border-radius:12px;width:45px;height:45px;margin:0 0 24px;box-shadow:0 9px 24px rgba(15,31,50,.16)}
-header>div:last-child{background:rgba(255,255,255,.07)!important;border:1px solid rgba(255,255,255,.09)!important}
-header #signout{border:1px solid rgba(255,255,255,.14)!important}
-nav{top:156px!important}
-nav button{padding:13px 16px!important;border-radius:12px!important;font-weight:600!important;font-size:13px!important;letter-spacing:.005em!important}
-nav button.on{background:#a2dfcb!important;color:#284f48!important;box-shadow:0 8px 18px rgba(18,38,52,.12)!important}
-nav button.on::before{color:#31584f!important}
-nav button:hover:not(.on){background:rgba(255,255,255,.12)!important}
-main{max-width:1490px!important;padding:33px 38px!important}
-h1,h2,h3{font-family:Manrope,sans-serif!important;letter-spacing:-.045em!important;color:#25384f!important}
-h2{font-size:24px!important;font-weight:800!important;margin-bottom:17px!important}
-.card{background:#fff!important;border:1px solid #e6ecf1!important;box-shadow:0 7px 28px rgba(40,60,80,.048)!important;border-radius:19px!important}
-.grid{gap:17px!important}
-.grid>.card{min-height:160px!important;position:relative!important;overflow:hidden!important;padding:25px!important;justify-content:flex-start!important}
-.grid>.card::after{content:'';position:absolute;top:22px;right:22px;width:43px;height:43px;border-radius:14px;background:#ecf3f8}
-.grid>.card:nth-child(1)::after{background:#dff4eb}
-.grid>.card:nth-child(2)::after{background:#e7edf7}
-.grid>.card:nth-child(3)::after{background:#f9eed4}
-.grid>.card:nth-child(4)::after{background:#fae5e4}
-.grid>.card:before{position:absolute;right:36px;top:31px;z-index:1;color:#4f7b71;font-size:20px;font-weight:700;content:'↗'}
-.grid>.card:nth-child(2):before{content:'▤';color:#536e92}
-.grid>.card:nth-child(3):before{content:'◈';color:#aa833c}
-.grid>.card:nth-child(4):before{content:'!';color:#c27974}
-.grid>.card .muted{font-size:12px!important;color:#788a9c!important;font-weight:600!important}
-.grid>.card h1{font-size:31px!important;margin:19px 0 0!important;color:#283f58!important;line-height:1.08!important}
-h2+ .card{margin-top:14px!important}
-button{font-size:12px!important;letter-spacing:.005em!important;font-weight:700!important;border-radius:11px!important;padding:12px 16px!important;box-shadow:none!important}
-button.mint{background:#a2dfcb!important;color:#265b4c!important}
-button.light{background:#edf2f6!important;color:#48647f!important}
-button:not(.light):not(.mint):not(.on){background:#4c6583!important;color:#fff!important}
-nav button:not(.on){background:transparent!important;color:#d9e4ef!important}
-nav button.on{background:#a2dfcb!important;color:#284f48!important}
-table{border-collapse:separate!important;border-spacing:0!important}
-th{padding:17px!important;background:#f7f9fb!important;text-transform:uppercase!important;letter-spacing:.065em!important;font-size:10px!important;color:#92a0ae!important}
-td{padding:19px 17px!important;color:#53657a!important;font-size:12px!important}
-tr:last-child td{border-bottom:0!important}
-.scroll{overflow:hidden!important;overflow-x:auto!important}
-#content>h2{margin-top:20px!important}
-.sale>div:first-child>.card{border:1px solid #e4eaf0!important;padding:17px!important;box-shadow:var(--elev)!important}
-#find{height:50px!important;padding-left:18px!important;font-size:13px!important}
-#vehicle{height:50px!important;font-size:12px!important}
-.product{background:#fff!important;border:1px solid #e5ecf2!important;border-radius:19px!important;min-height:205px!important;padding:20px!important;display:flex!important;flex-direction:column!important}
-.product:before{content:'◈';background:#e9f0f7!important;width:47px!important;height:47px!important;border-radius:15px!important;box-sizing:border-box;color:#547395!important;font-size:22px!important;margin-bottom:16px!important}
-.product .muted{color:#92a0af!important;font-size:11px!important}
-.product strong{margin:11px 0 3px!important;font-size:13px!important;color:#2e4159!important;line-height:1.48!important;min-height:39px!important;font-weight:750!important}
-.product p{line-height:1.5!important;font-size:11px!important;color:#8a9aab!important;margin:2px 0 12px!important}
-.product>span:last-of-type{margin-top:auto!important;font-size:18px!important;color:#2b4056!important}
-.product button{width:37px!important;height:37px!important;padding:0!important;background:#a4dfca!important;border-radius:11px!important;color:#285d4f!important;font-size:19px!important;display:grid!important;place-items:center!important}
-.sale>.card{border-radius:20px!important;padding:26px!important;border:1px solid #e4eaf0!important;box-shadow:0 14px 40px rgba(41,60,79,.07)!important}
-.sale>.card h2{font-size:23px!important}
-.sale>.card>.line{background:#f8fafb!important;border:1px solid #e7edf2!important;padding:15px!important;border-radius:13px!important;color:#53677d!important}
-.sale>.card>.total{font-size:32px!important;font-family:Manrope,sans-serif!important;letter-spacing:-.055em!important}
-.sale>.card>button:last-child{background:#a2dfcb!important;color:#255b4c!important;font-size:14px!important;min-height:50px!important}
-#gate{background:linear-gradient(180deg,#394f6b 0%,#394f6b 245px,#f1f4f7 245px)!important}
-#gate>form,#gate>div{background:#fff!important;border:1px solid #e5ebf1!important;border-radius:21px!important;padding:20px!important;box-shadow:0 18px 40px rgba(35,49,66,.12)!important}
-#gate>h1{font-size:30px!important;font-family:Manrope,sans-serif!important}
-#overlay .modal{border:1px solid #e7ebef!important}
-#overlay .modal h2{font-size:23px!important}
-@media(max-width:840px){header{background:#394f6b!important;padding:15px!important}header>div:first-child::before{display:none!important}main{padding:18px!important}nav{top:auto!important;background:#394f6b!important}nav button.on{background:#a2dfcb!important;color:#284f48!important}.grid>.card{min-height:128px!important;padding:18px!important}.grid>.card h1{font-size:24px!important}.grid>.card::after{width:35px;height:35px;top:12px;right:12px}.grid>.card:before{right:24px;top:19px;font-size:15px}.product{min-height:190px!important;padding:15px!important}}
-@media(max-width:520px){.grid>.card{min-height:115px!important}.grid>.card h1{font-size:20px!important}.sale>.card{padding:18px!important}.product{min-height:190px!important}.product:before{width:40px!important;height:40px!important}.product strong{font-size:12px!important}}
-
-</style></head><body>
-<div id="gate" class="card"><h1>Taller Emanuel</h1><p class="muted">Sistema de ventas y control de repuestos</p><div id="configuration"><p class="alert">Para operar, vincula Supabase. Solo usa la clave pública anon o publishable; nunca una clave secreta.</p><form id="configForm"><label>URL Supabase<input name="url" type="url" placeholder="https://xxxx.supabase.co" required></label><label>Clave pública<input name="key" required></label><button>Conectar</button></form></div><form id="signin" class="hidden"><label>Correo<input name="email" type="email" required></label><label>Contraseña<input name="password" type="password" required></label><button>Iniciar sesión</button><button type="button" class="light" id="resetConfig">Cambiar conexión</button></form></div>
-<div id="application" class="hidden"><header><div><b>TALLER EMANUEL</b><div style="font-size:11px;opacity:.7">Repuestos · Punto de venta</div></div><div><span id="identity"></span> <button id="signout" class="light">Salir</button></div></header><main><nav id="nav"></nav><section id="content"></section></main></div><div id="overlay"></div><div id="message"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script>
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#506684"><title>Taller Emanuel · Punto de venta</title>
+<link rel="icon" href="/icon-192.png"><link rel="stylesheet" href="/styles.css"><style>
+/* Original approved prototype layout, adapted for connected production-facing UI */
+html,body{margin:0;min-height:100%;background:#f4f7fa;color:#28364a;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.46;cursor:not-allowed}
+.hidden{display:none!important}
+#application{display:flex;min-height:100vh}
+#application .sidebar{width:248px;position:fixed;top:0;left:0;bottom:0;z-index:51;display:flex;flex-direction:column}
+#application .main{margin-left:248px;width:calc(100% - 248px);min-width:0}
+#application #nav{display:flex;flex-direction:column;gap:5px;padding:0;margin:0;overflow:visible}
+#application #nav button{display:flex;align-items:center;gap:10px;background:transparent;color:#d6e0ec;border:0;border-radius:10px;text-align:left;width:100%;font-size:12px;padding:11px 14px;font-weight:600;white-space:normal}
+#application #nav button.on,#application #nav button:hover{background:rgba(255,255,255,.12);color:white}
+#application #nav button:nth-child(1)::before{content:'⌂';font-size:17px;width:18px}
+#application #nav button:nth-child(2)::before{content:'▣';font-size:17px;width:18px}
+#application #nav button:nth-child(3)::before{content:'◇';font-size:17px;width:18px}
+#application #nav button:nth-child(4)::before{content:'○';font-size:17px;width:18px}
+#application #nav button:nth-child(5)::before{content:'▤';font-size:17px;width:18px}
+#application #nav button:nth-child(6)::before{content:'↗';font-size:17px;width:18px}
+#application #nav button:nth-child(7)::before{content:'⇩';font-size:17px;width:18px}
+#application #nav button:nth-child(8)::before{content:'♙';font-size:17px;width:18px}
+#application #nav button:nth-child(9)::before{content:'⌁';font-size:17px;width:18px}
+#application .sidebar-footer{margin-top:auto}
+#application #signout{background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;padding:7px 10px;border-radius:9px;font-size:10px;white-space:nowrap}
+#application #identity{font-size:11px;line-height:1.4}
+#application .content{max-width:none;margin:0;padding:24px 28px}
+#application #viewheading{font-size:21px;margin:0 0 3px;font-weight:800}
+#application .topbar{position:sticky;top:0;z-index:45}
+#application .section-title{font-size:21px;margin:0 0 16px;color:#28364a;letter-spacing:-.035em}
+#application .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:19px}
+#application .grid>.card{background:#fff;border:1px solid #e3e9ef;border-radius:15px;box-shadow:0 8px 24px rgba(46,67,91,.045);min-height:125px;margin:0;padding:21px;display:flex;flex-direction:column;justify-content:center}
+#application .grid>.card:nth-child(1){border-left:4px solid #80d4b4}
+#application .grid>.card:nth-child(2){border-left:4px solid #8ca0bb}
+#application .grid>.card:nth-child(3){border-left:4px solid #e8c97b}
+#application .grid>.card:nth-child(4){border-left:4px solid #eeaaa2}
+#application .grid>.card h1{font-size:26px;color:#28364a;margin:10px 0 0}
+#application .grid>.card .muted{font-size:11px;color:#8997a7}
+#application .card{background:#fff;border:1px solid #e3e9ef;border-radius:15px;box-shadow:0 8px 24px rgba(46,67,91,.04);padding:19px;margin:0 0 16px}
+#application h2{font-size:18px;margin:8px 0 14px;color:#28364a}
+#application h2 button{float:right}
+#application button{background:#506684;color:#fff;border:none;border-radius:9px;padding:10px 13px;font-size:11px;font-weight:650}
+#application button.mint{background:#80d7b9;color:#275f4c}
+#application button.light{background:#edf2f7;color:#506684}
+#application input,#application select{border:1px solid #dce4ed;padding:11px 12px;border-radius:9px;background:#fff;color:#28364a;outline:none}
+#application input:focus,#application select:focus{border-color:#93acc5;box-shadow:0 0 0 3px rgba(80,102,132,.08)}
+#application .scroll{overflow-x:auto}
+#application table{border-collapse:collapse;min-width:650px;width:100%}
+#application th,#application td{text-align:left;padding:14px 16px;border-bottom:1px solid #edf0f4;font-size:11px}
+#application th{background:#fbfcfd;color:#8a98a9;font-size:10px}
+#application tr:last-child td{border-bottom:0}
+#application .muted{font-size:11px;color:#84909f}
+#application .sale{display:grid;grid-template-columns:minmax(0,1fr) 345px;gap:16px;align-items:start}
+#application .sale>div:first-child>.card{padding:15px;display:flex;gap:8px}
+#application .sale #find{flex:1;min-width:0;height:48px;font-size:12px}
+#application .sale #vehicle{min-width:145px}
+#application .sale>div:first-child>.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+#application .sale .product{background:#fff;border:1px solid #e3e9ef;border-radius:14px;padding:15px;min-height:170px;display:flex;flex-direction:column;box-shadow:0 7px 20px rgba(46,67,91,.035)}
+#application .sale .product:before{content:'⚙';display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:#eaf0f8;color:#506684;font-size:20px;margin-bottom:9px}
+#application .sale .product strong{display:block;line-height:1.4;font-size:12px;color:#28364a;margin:8px 0 4px}
+#application .sale .product p{font-size:10px;line-height:1.4;margin:4px 0 10px;color:#84909f;min-height:28px}
+#application .sale .product>span:last-of-type{font-size:16px;color:#28364a;font-weight:800;margin-top:auto}
+#application .sale .product button{float:right;background:#80d7b9;color:#285d4b;border-radius:8px;font-size:17px;width:31px;height:31px;padding:0}
+#application .sale>.card{position:sticky;top:94px;padding:20px;min-height:470px}
+#application .sale>.card h2{font-size:19px;margin:1px 0 5px}
+#application .sale>.card>.line{border:1px solid #e8edf2;border-radius:11px;padding:12px;margin:8px 0}
+#application .line{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 0;border-bottom:1px solid #e9eef3;font-size:11px}
+#application .sale>.card>.total{text-align:right;font-size:24px;font-weight:800;margin:19px 0 13px}
+#application .sale>.card>button:last-child{width:100%;padding:14px;background:#80d7b9;color:#245e4a;font-size:12px}
+#gate{width:100%;min-height:100vh;margin:0;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(180deg,#506684 0,#506684 210px,#f4f7fa 210px)}
+#gate>h1{color:#fff;font-size:27px;margin:0 0 12px}
+#gate>p{color:#fff;font-size:11px}
+#gate>form,#gate>div{width:min(430px,100%);padding:19px;background:#fff;border-radius:14px;border:1px solid #e3e9ef;box-shadow:0 12px 30px rgba(39,60,84,.08);margin:10px 0}
+#gate label{display:block;margin:12px 0;font-size:11px;font-weight:700}
+#gate input{display:block;width:100%;margin-top:7px;padding:12px;border:1px solid #dce4ed;border-radius:9px}
+#gate button{background:#506684;border:0;color:white;padding:11px 15px;border-radius:9px;font-weight:700}
+#overlay .modalback{position:fixed;inset:0;background:#263b55aa;display:grid;place-items:center;padding:20px;z-index:100}
+#overlay .modal{width:min(470px,100%);background:#fff;border-radius:16px;padding:24px;max-height:88vh;overflow:auto}
+#overlay .modal label{display:block;font-size:12px;margin:12px 0;font-weight:650}
+#overlay .modal input,#overlay .modal select{display:block;width:100%;padding:11px;border:1px solid #dce4ed;border-radius:9px;margin-top:6px}
+#overlay .actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}
+#overlay button{background:#506684;color:#fff;padding:11px 13px;border:0;border-radius:9px}
+#overlay button.light{background:#eaf0f7;color:#506684}
+#message{position:fixed;right:24px;bottom:24px;background:#28364a;color:white;padding:14px 19px;border-radius:12px;z-index:120;box-shadow:0 12px 30px #253d5f29}
+@media(max-width:1100px){#application .grid{grid-template-columns:repeat(2,minmax(0,1fr))}#application .sale{grid-template-columns:minmax(0,1fr) 310px}#application .sale>div:first-child>.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){#application .sidebar{display:none}#application .main{margin-left:0;width:100%}#application .content{padding:15px 16px 85px}#application .sale{grid-template-columns:1fr}#application .sale>.card{position:static}#application .topbar{height:68px}#application .mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:70;background:#fff;border-top:1px solid #e2e8ef;gap:0;overflow:auto;height:66px}#application .mobile-nav button{background:#fff;color:#697e96;border-radius:0;flex:1;white-space:nowrap;font-size:11px;padding:12px 8px}#application .mobile-nav button.on{background:#eaf3f1;color:#416f61}#application .grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:530px){#application .grid>.card{padding:13px;min-height:95px}#application .grid>.card h1{font-size:18px}#application .sale>div:first-child>.card{flex-direction:column}#application .sale>div:first-child>.grid{grid-template-columns:repeat(2,minmax(0,1fr))}#application .sale .product{padding:11px;min-height:160px}#application .sale .product strong{font-size:11px}#application .sale .product>span:last-of-type{font-size:13px}#application .topbar{padding:12px 15px}#application #identity{font-size:9px}}
+</style></head>
+<body>
+<section id="gate"><h1>TALLER EMANUEL</h1><p>Acceso seguro al sistema de repuestos</p>
+<div id="configuration"><p class="muted">Conecta Supabase con la URL y la clave pública, nunca una clave privada.</p><form id="configForm"><label>URL de Supabase<input name="url" type="url" required placeholder="https://xxxx.supabase.co"></label><label>Clave pública<input name="key" required autocomplete="off"></label><button>Conectar</button></form></div>
+<form id="signin" class="hidden"><label>Correo<input name="email" type="email" autocomplete="username" required></label><label>Contraseña<input name="password" type="password" autocomplete="current-password" required></label><button>Iniciar sesión</button><button type="button" class="light" id="resetConfig">Cambiar conexión</button></form>
+</section>
+<section id="application" class="hidden">
+<aside class="sidebar"><div class="brand"><div class="brand-mark">TE</div><div><strong>TALLER EMANUEL</strong><span>REPUESTOS · POS</span></div></div><nav id="nav" class="nav"></nav><div class="sidebar-footer"><div class="user-mini"><div class="avatar">TE</div><div style="flex:1;min-width:0"><strong id="identity">Administrador</strong><span>Sesión activa</span></div><button id="signout" title="Cerrar sesión">Salir</button></div></div></aside>
+<div class="main"><header class="topbar"><div class="top-title"><span class="eyebrow">Taller Emanuel · Centro de repuestos</span><h1 id="viewheading">Resumen del negocio</h1></div><div class="top-actions"><span class="cash-status"><span class="status-dot"></span> Sistema conectado</span><button class="avatar top-avatar" title="Usuario activo">TE</button></div></header><main id="content" class="content"></main></div>
+<nav id="mobileNav" class="mobile-nav" style="display:none"></nav></section>
+<div id="overlay"></div><div id="message" style="display:none"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
 (()=>{'use strict';const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),Q=n=>'Q '+Number(n||0).toLocaleString('es-GT',{minimumFractionDigits:2,maximumFractionDigits:2});
 let api,user,role,products=[],customers=[],sales=[],cash,cart=[],section='Inicio',off=0;
 const conf='te-pos-public-config';const screens=['Inicio','Vender','Inventario','Clientes','Caja','Gastos','Compras','Usuarios','Reportes'];
@@ -159,7 +109,7 @@ $('signout').onclick=async()=>{await api.auth.signOut();location.reload()};
 async function run(q){const r=await q;if(r.error)throw r.error;return r.data}
 async function start(){const {data:{user:u}}=await api.auth.getUser();if(!u)return;user=u;role=await run(api.from('profiles').select('*').eq('id',u.id).single());if(!role.active)throw Error('Cuenta desactivada');$('identity').textContent=role.name+' · '+(role.role==='admin'?'Administrador':'Vendedor');$('gate').classList.add('hidden');$('application').classList.remove('hidden');await load();goto('Inicio')}
 async function load(){products=await run(api.from('products').select('*').eq('active',true).order('name'));customers=await run(api.from('customers').select('*').order('name'));sales=await run(api.from('sales').select('*').order('created_at',{ascending:false}).limit(250));cash=await run(api.from('cash_sessions').select('*').eq('cashier_id',user.id).is('closed_at',null).maybeSingle())}
-function goto(s){if(role.role!=='admin'&&['Compras','Usuarios','Reportes'].includes(s))return msg('Solo administradores');section=s;$('nav').innerHTML=screens.filter(x=>role.role==='admin'||!['Compras','Usuarios','Reportes'].includes(x)).map(x=>'<button class="'+(s===x?'on':'')+'" data-screen="'+x+'">'+x+'</button>').join('');document.querySelectorAll('[data-screen]').forEach(b=>b.onclick=()=>goto(b.dataset.screen));paint()}
+function goto(s){document.getElementById('viewheading').textContent=({'Inicio':'Resumen del negocio','Vender':'Nueva venta','Inventario':'Inventario','Clientes':'Clientes y crédito','Caja':'Control de caja','Gastos':'Gastos','Compras':'Compras y proveedores','Usuarios':'Usuarios y permisos','Reportes':'Reportes'})[s]||s;if(role.role!=='admin'&&['Compras','Usuarios','Reportes'].includes(s))return msg('Solo administradores');section=s;$('nav').innerHTML=screens.filter(x=>role.role==='admin'||!['Compras','Usuarios','Reportes'].includes(x)).map(x=>'<button class="'+(s===x?'on':'')+'" data-screen="'+x+'">'+x+'</button>').join('');document.querySelectorAll('[data-screen]').forEach(b=>b.onclick=()=>goto(b.dataset.screen));document.getElementById('mobileNav').innerHTML=document.getElementById('nav').innerHTML;document.getElementById('mobileNav').querySelectorAll('[data-screen]').forEach(b=>b.onclick=()=>goto(b.dataset.screen));paint()}
 const button=(name,act,cl='')=>'<button class="'+cl+'" data-action="'+act+'">'+name+'</button>';
 const table=(heads,rows)=>'<div class="card scroll"><table><thead><tr>'+heads.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
 function paint(){let h='';if(section==='Inicio'){const now=sales.filter(s=>new Date(s.created_at).toDateString()===new Date().toDateString());h='<div class="grid">'+[['Ventas hoy',Q(now.reduce((a,s)=>a+Number(s.total),0))],['Tickets',now.length],['Repuestos',products.length],['Stock bajo',products.filter(p=>p.stock<=p.min).length]].map(x=>'<div class="card"><span class="muted">'+x[0]+'</span><h1>'+x[1]+'</h1></div>').join('')+'</div><h2>Movimientos recientes</h2>'+table(['#','Fecha','Forma de pago','Total'],sales.slice(0,12).map(s=>[s.id,new Date(s.created_at).toLocaleString('es-GT'),esc(s.method),Q(s.total)]))}
