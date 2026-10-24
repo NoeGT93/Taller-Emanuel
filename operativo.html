@@ -236,6 +236,34 @@ body{font-size:14px!important;line-height:1.5!important;letter-spacing:-.012em!i
 @media(max-width:540px){.te-analytics-top{align-items:flex-start;flex-direction:column}.te-ring-layout{gap:12px}.te-ring{width:125px;height:125px;flex-basis:125px}.te-ring>div{width:83px;height:83px}.te-ring-legend{min-width:0}}
 @media(prefers-reduced-motion:reduce){.te-ring{animation:none}}
 
+
+/* Panel de actividad simulada, completamente aislado de operaciones reales */
+.te-demo-workspace{margin:20px 0 24px}
+.te-demo-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
+.te-demo-head h2{margin:0 0 4px!important;font-size:20px!important}
+.te-demo-head p{margin:0;font-size:11px;color:#8c9db6}
+.te-demo-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.te-demo-kpi{padding:17px!important;min-width:0}
+.te-demo-kpi span{font-size:11px;color:#8499b5;display:block}
+.te-demo-kpi strong{font-size:21px;display:block;margin-top:10px;color:#365d9a;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.045em}
+.te-demo-kpi small{color:#9daec2;font-size:10px}
+.te-demo-kpi:nth-child(2){background:linear-gradient(155deg,#fff,#effbf6)!important}
+.te-demo-kpi:nth-child(3){background:linear-gradient(155deg,#fff,#fff8ee)!important}
+.te-demo-kpi:nth-child(4){background:linear-gradient(155deg,#fff,#f6f2ff)!important}
+.te-demo-table-head{display:flex;gap:9px;align-items:center;justify-content:space-between;margin:0 0 12px}
+.te-demo-table-head h3{font-size:15px;margin:0;color:#335682}
+.te-demo-table-head select{width:auto!important;padding:8px 12px!important}
+.te-demo-ledger{overflow-x:auto}
+.te-demo-ledger table{width:100%;min-width:670px}
+.te-demo-ledger .te-event-type{display:inline-flex;border-radius:999px;padding:6px 10px;font-size:10px;font-weight:750;background:#e7f1ff;color:#5588d2}
+.te-demo-ledger .te-event-type.sale{background:#e5f4ed;color:#438c70;display:inline-flex!important;grid-template-columns:none!important}
+.te-demo-ledger .te-event-type.expense{background:#fff0e9;color:#b17c57}
+.te-demo-ledger .te-event-type.purchase{background:#efeaff;color:#8073b3}
+.te-demo-ledger .te-event-type.income{background:#e8f4ff;color:#4783d2}
+.te-demo-disclaimer{font-size:11px;color:#8499b5;background:#f3f8ff;padding:12px 14px;border-radius:12px;margin:14px 0 0}
+@media(max-width:1000px){.te-demo-kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:530px){.te-demo-head{align-items:start;flex-direction:column}.te-demo-kpi strong{font-size:17px}.te-demo-kpis{gap:8px}}
+
 </style></head>
 <body>
 <section id="gate"><h1>TALLER EMANUEL</h1><p>Acceso seguro al sistema de repuestos</p>
@@ -299,6 +327,49 @@ if(connect())api.auth.getSession().then(r=>{if(r.data.session)start().catch(e=>m
 })();
 </script><script>
 (function(){
+
+const teDemoOperations = [
+ ['V-2041','Venta','2026-10-23T09:15:00','Pastillas de freno Yamaha','Mostrador','Efectivo',375],
+ ['V-2042','Venta','2026-10-23T09:48:00','Kit cadena y sprocket','Taller El Rápido','Transferencia',675],
+ ['I-031','Ingreso','2026-10-23T10:05:00','Abono a crédito','Transportes Xelajú','Efectivo',950],
+ ['V-2043','Venta','2026-10-23T10:30:00','Aceite 4T y bujías','Mostrador','Tarjeta',274],
+ ['G-091','Gasto','2026-10-23T11:12:00','Combustible para entregas','Operación','Efectivo',180],
+ ['V-2044','Venta','2026-10-23T11:46:00','Zapatas traseras Bajaj','Transportista','Efectivo',440],
+ ['C-073','Compra','2026-10-23T12:10:00','Entrada de filtros y cables','Distribuidora Maya','Transferencia',1520],
+ ['V-2045','Venta','2026-10-23T12:55:00','Batería 12V 7Ah','Mostrador','Efectivo',390],
+ ['I-032','Ingreso','2026-10-23T13:20:00','Abono de taller','Taller El Rápido','Transferencia',1200],
+ ['V-2046','Venta','2026-10-23T14:04:00','Rodamientos y retenedores','Mototaxi 18','Transferencia',315],
+ ['G-092','Gasto','2026-10-23T14:35:00','Papelería y empaque','Operación','Efectivo',95],
+ ['V-2047','Venta','2026-10-23T15:16:00','Filtro aire y bombillo H4','Mostrador','Tarjeta',255],
+ ['V-2048','Venta','2026-10-23T16:02:00','Cable acelerador Bajaj','Mostrador','Efectivo',168],
+ ['V-2049','Venta','2026-10-22T09:45:00','Kit cadena y bujías','Mostrador','Efectivo',281],
+ ['V-2050','Venta','2026-10-22T11:20:00','Pastillas de freno Corolla','Taller Automotriz','Transferencia',570],
+ ['I-033','Ingreso','2026-10-22T12:32:00','Abono de crédito','Cliente registrado','Efectivo',800],
+ ['C-074','Compra','2026-10-22T14:15:00','Entrada de baterías','Importadora Motriz','Transferencia',1890],
+ ['G-093','Gasto','2026-10-22T15:20:00','Servicios del local','Operación','Transferencia',325],
+ ['V-2051','Venta','2026-10-21T10:10:00','Espejos y zapatas tuc tuc','Mostrador','Efectivo',360],
+ ['V-2052','Venta','2026-10-21T14:50:00','Aceite 4T 20W50','Taller El Rápido','Efectivo',550]
+];
+function renderDemoOperations(){
+ const root=document.getElementById('content');
+ if(!root||!root.querySelector('.grid')||document.getElementById('teDemoWorkspace'))return;
+ const anchor=document.getElementById('teAnalytics');
+ if(!anchor)return;
+ const fmt=n=>'Q '+n.toLocaleString('es-GT',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const total=t=>teDemoOperations.filter(x=>x[1]===t).reduce((sum,x)=>sum+x[6],0);
+ const box=document.createElement('section');box.id='teDemoWorkspace';box.className='te-demo-workspace';
+ box.innerHTML='<div class="te-demo-head"><div><h2>Operaciones del negocio</h2><p>Ejemplos de ventas, cobros, compras y movimientos de caja</p></div><span class="te-demo-tag">DATOS DE DEMOSTRACIÓN</span></div>'+
+ '<div class="te-demo-kpis">'+[['Ventas de ejemplo',total('Venta'),'Tickets simulados'],['Cobros e ingresos',total('Ingreso'),'Abonos de clientes'],['Compras registradas',total('Compra'),'Abastecimiento de ejemplo'],['Gastos operativos',total('Gasto'),'Egresos simulados']].map(x=>'<article class="card te-demo-kpi"><span>'+x[0]+'</span><strong>'+fmt(x[1])+'</strong><small>'+x[2]+'</small></article>').join('')+'</div>'+
+ '<article class="card"><div class="te-demo-table-head"><h3>Movimientos de ejemplo</h3><select id="teDemoFilter"><option value="all">Todos los movimientos</option><option value="Venta">Ventas</option><option value="Ingreso">Cobros e ingresos</option><option value="Compra">Compras</option><option value="Gasto">Gastos</option></select></div><div class="te-demo-ledger" id="teDemoLedger"></div><p class="te-demo-disclaimer">Estos datos son ficticios y sirven únicamente para visualizar el funcionamiento. No se guardan en Supabase, no crean cobros reales y no modifican inventario ni caja.</p></article>';
+ anchor.insertAdjacentElement('afterend',box);
+ const list=box.querySelector('#teDemoLedger');
+ function paint(filter){const data=teDemoOperations.filter(x=>filter==='all'||x[1]===filter);
+ list.innerHTML='<table><thead><tr><th>Documento</th><th>Movimiento</th><th>Fecha</th><th>Descripción</th><th>Cliente / Proveedor</th><th>Método</th><th>Monto</th></tr></thead><tbody>'+data.map(x=>'<tr><td>'+x[0]+'</td><td><span class="te-event-type '+({Venta:'sale',Ingreso:'income',Compra:'purchase',Gasto:'expense'}[x[1]])+'">'+x[1]+'</span></td><td>'+new Date(x[2]).toLocaleDateString('es-GT')+'</td><td>'+x[3]+'</td><td>'+x[4]+'</td><td>'+x[5]+'</td><td><strong>'+fmt(x[6])+'</strong></td></tr>').join('')+'</tbody></table>';}
+ box.querySelector('#teDemoFilter').onchange=e=>paint(e.target.value);paint('all');
+}
+const teDataObserver = new MutationObserver(()=>{if(!document.getElementById('teDemoWorkspace'))requestAnimationFrame(renderDemoOperations)});
+teDataObserver.observe(document.getElementById('content'),{childList:true});
+setTimeout(renderDemoOperations,700);
 let demoMode = true;
 const samples = [
  {label:'Lun',amount:1260},{label:'Mar',amount:2185},{label:'Mié',amount:1740},
