@@ -210,6 +210,32 @@ body{font-size:14px!important;line-height:1.5!important;letter-spacing:-.012em!i
 @media(max-width:820px){#application #viewheading{font-size:19px!important}#application .grid>.card h1{font-size:23px!important}#application #nav button{font-size:12px!important}}
 @media(max-width:530px){#application #viewheading{font-size:17px!important}#application .grid>.card h1{font-size:19px!important}#application .sale .product strong{font-size:12px!important}#application .sale .product>span:last-of-type{font-size:15px!important}#application .mobile-nav button{font-size:10px!important}}
 
+
+/* Analítica visual — datos de demostración aislados de Supabase */
+.te-analytics{margin:17px 0 23px}
+.te-analytics-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
+.te-analytics-top h2{font-size:20px!important;margin:0 0 4px!important}
+.te-analytics-top p{font-size:12px;color:#8c9cba;margin:0}
+#application #teDemoSwitch{background:#e6efff!important;color:#487fcf!important;border:1px solid #d5e6ff!important;border-radius:12px!important;font-size:11px!important;white-space:nowrap}
+.te-analytics-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,1fr);gap:16px}
+.te-analytics .card{margin:0!important;min-width:0}
+.te-chart-title{display:flex;justify-content:space-between;align-items:start;gap:10px}
+.te-demo-tag{padding:6px 9px;border-radius:999px;color:#5786d5;background:#e7f0ff;font-size:9px;font-weight:800;letter-spacing:.07em;white-space:nowrap}
+.te-ring-layout{display:flex;gap:22px;align-items:center;justify-content:center;margin-top:28px}
+.te-ring{width:154px;height:154px;flex:0 0 154px;border-radius:50%;background:conic-gradient(#5b94f4 0% 46%,#8adfca 46% 80%,#b9b4ef 80% 100%);display:grid;place-items:center;animation:teRing .85s ease both}
+.te-ring>div{width:101px;height:101px;background:white;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.te-ring strong{font-family:'Plus Jakarta Sans',sans-serif;font-size:21px;color:#3764ad}
+.te-ring span{font-size:10px;color:#9babc2}
+.te-ring-legend{display:grid;gap:15px;min-width:155px;flex:1}
+.te-ring-legend>div{display:grid;grid-template-columns:9px 1fr auto;align-items:center;gap:9px;font-size:11px;color:#7288a5}
+.te-ring-legend i{width:9px;height:9px;border-radius:50%}
+.te-ring-legend strong{color:#3d6395;font-size:12px}
+.te-category-note{font-size:10px!important;color:#9aacbf!important;margin-top:20px!important}
+@keyframes teRing{from{opacity:.4;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@media(max-width:1050px){.te-analytics-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.te-analytics-top{align-items:flex-start;flex-direction:column}.te-ring-layout{gap:12px}.te-ring{width:125px;height:125px;flex-basis:125px}.te-ring>div{width:83px;height:83px}.te-ring-legend{min-width:0}}
+@media(prefers-reduced-motion:reduce){.te-ring{animation:none}}
+
 </style></head>
 <body>
 <section id="gate"><h1>TALLER EMANUEL</h1><p>Acceso seguro al sistema de repuestos</p>
@@ -273,25 +299,53 @@ if(connect())api.auth.getSession().then(r=>{if(r.data.session)start().catch(e=>m
 })();
 </script><script>
 (function(){
-function chart(){
+let demoMode = true;
+const samples = [
+ {label:'Lun',amount:1260},{label:'Mar',amount:2185},{label:'Mié',amount:1740},
+ {label:'Jue',amount:2860},{label:'Vie',amount:3525},{label:'Sáb',amount:3140},{label:'Dom',amount:1960}
+];
+const groups = [
+ {name:'Motocicletas',value:46,color:'#5b94f4'},
+ {name:'Tuc tucs',value:34,color:'#8adfca'},
+ {name:'Vehículos',value:20,color:'#b9b4ef'}
+];
+function drawCharts(){
  const root=document.getElementById('content');
  if(!root||!root.querySelector('.grid')||document.getElementById('application')?.classList.contains('hidden'))return;
- if(document.getElementById('auraWeeklyChart'))return;
+ if(root.querySelector('#teAnalytics'))return;
  const heading=Array.from(root.querySelectorAll('h2')).find(h=>/movimientos recientes/i.test(h.textContent||''));
  if(!heading)return;
- const salesRows=Array.from(root.querySelectorAll('table tbody tr'));
- const points=Array.from({length:7},(_,i)=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(6-i));return {day:d,amount:0}});
- for(const tr of salesRows){const tds=tr.querySelectorAll('td');if(tds.length<4)continue;const parsed=new Date((tds[1]?.textContent||'').trim());const amount=Number((tds[3]?.textContent||'').replace(/[^0-9.]/g,''));if(Number.isFinite(parsed.getTime())){const pt=points.find(p=>p.day.toDateString()===parsed.toDateString());if(pt)pt.amount+=Number.isFinite(amount)?amount:0;}}
- // Visual bars are drawn from the currently displayed sale rows only.
- const max=Math.max(1,...points.map(p=>p.amount));
- const labels=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
- const card=document.createElement('article');card.id='auraWeeklyChart';card.className='card aura-chart';
- card.innerHTML='<div><h3>Actividad reciente</h3><p>Visualización de las ventas mostradas en pantalla</p></div><div class="aura-chart-bars">'+points.map((p,i)=>'<div class="aura-bar-wrap"><div class="aura-bar '+(p.amount===0?'zero':'')+'" style="height:'+Math.max(4,p.amount/max*132)+'px;--delay:'+(i*0.07)+'s"></div><small>'+labels[p.day.getDay()]+'</small></div>').join('')+'</div><div class="aura-chart-meta"><span>Últimos siete días · registros visibles</span><strong>Q '+points.reduce((a,p)=>a+p.amount,0).toLocaleString('es-GT',{minimumFractionDigits:2,maximumFractionDigits:2})+'</strong></div>';
- heading.insertAdjacentElement('beforebegin',card);
+ const wrap=document.createElement('section');
+ wrap.id='teAnalytics';wrap.className='te-analytics';
+ heading.insertAdjacentElement('beforebegin',wrap);
+ renderCharts(wrap);
 }
-const observer=new MutationObserver(()=>{if(document.getElementById('auraWeeklyChart'))return;requestAnimationFrame(chart)});
+function renderCharts(wrap){
+ const rows=Array.from(document.querySelectorAll('#content table tbody tr'));
+ const real=Array.from({length:7},(_,i)=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(6-i));return {label:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'][d.getDay()],date:d,amount:0}});
+ for(const tr of rows){const td=tr.querySelectorAll('td');if(td.length<4)continue;
+  const raw=(td[1]?.textContent||'').trim();
+  const parts=raw.match(/(\\d{1,2})\\/(\\d{1,2})\\/(\\d{4})/);
+  if(!parts)continue;
+  const date=new Date(Number(parts[3]),Number(parts[2])-1,Number(parts[1]));
+  const amount=Number((td[3]?.textContent||'').replace(/[^0-9.]/g,''));
+  const point=real.find(p=>p.date.toDateString()===date.toDateString());
+  if(point&&Number.isFinite(amount))point.amount+=amount;
+ }
+ const points=demoMode?samples:real;
+ const sum=points.reduce((n,p)=>n+p.amount,0),max=Math.max(1,...points.map(p=>p.amount));
+ const legend=demoMode?'Datos ilustrativos · no afectan ventas ni inventario':'Ventas visibles en la tabla · máximo 10 registros';
+ wrap.innerHTML='<div class="te-analytics-top"><div><h2>Analítica de ventas</h2><p>Explora el comportamiento del negocio con gráficos animados</p></div><button type="button" id="teDemoSwitch" aria-pressed="'+demoMode+'">'+(demoMode?'Ver datos registrados':'Ver demostración')+'</button></div>'+
+ '<div class="te-analytics-grid"><article class="card aura-chart"><div class="te-chart-title"><div><h3>Ventas de la semana</h3><p>'+legend+'</p></div><span class="te-demo-tag">'+(demoMode?'DEMO':'REAL · PARCIAL')+'</span></div>'+
+ '<div class="aura-chart-bars">'+points.map((p,i)=>'<div class="aura-bar-wrap"><div class="aura-bar '+(!p.amount?'zero':'')+'" style="height:'+Math.max(4,p.amount/max*132)+'px;--delay:'+(i*.07)+'s" title="'+p.label+': Q '+p.amount.toFixed(2)+'"></div><small>'+p.label+'</small></div>').join('')+'</div>'+
+ '<div class="aura-chart-meta"><span>'+ (demoMode?'Ejemplo de 7 días':'Total de registros visibles') +'</span><strong>Q '+sum.toLocaleString('es-GT',{minimumFractionDigits:2,maximumFractionDigits:2})+'</strong></div></article>'+
+ '<article class="card te-categories"><div class="te-chart-title"><div><h3>Ventas por segmento</h3><p>Distribución ilustrativa del catálogo</p></div><span class="te-demo-tag">DEMO</span></div>'+
+ '<div class="te-ring-layout"><div class="te-ring"><div><strong>100%</strong><span>Ejemplo</span></div></div><div class="te-ring-legend">'+groups.map(g=>'<div><i style="background:'+g.color+'"></i><span>'+g.name+'</span><strong>'+g.value+'%</strong></div>').join('')+'</div></div><p class="te-category-note">Porcentajes de muestra; no representan ventas reales.</p></article></div>';
+ wrap.querySelector('#teDemoSwitch').onclick=()=>{demoMode=!demoMode;renderCharts(wrap)};
+}
+const observer=new MutationObserver(()=>{if(!document.getElementById('teAnalytics'))requestAnimationFrame(drawCharts)});
 observer.observe(document.getElementById('content'),{childList:true});
-setTimeout(chart,1000);
+setTimeout(drawCharts,500);
 })();
 </script>
 </body></html>
