@@ -238,7 +238,7 @@ if(connect())api.auth.getSession().then(r=>{if(r.data.session)start().catch(e=>m
 (function(){
 function chart(){
  const root=document.getElementById('content');
- if(!root||!root.querySelector('.grid')||!document.getElementById('application')?.classList.contains('hidden'))return;
+ if(!root||!root.querySelector('.grid')||document.getElementById('application')?.classList.contains('hidden'))return;
  if(document.getElementById('auraWeeklyChart'))return;
  const heading=Array.from(root.querySelectorAll('h2')).find(h=>/movimientos recientes/i.test(h.textContent||''));
  if(!heading)return;
