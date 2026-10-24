@@ -264,6 +264,32 @@ body{font-size:14px!important;line-height:1.5!important;letter-spacing:-.012em!i
 @media(max-width:1000px){.te-demo-kpis{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:530px){.te-demo-head{align-items:start;flex-direction:column}.te-demo-kpi strong{font-size:17px}.te-demo-kpis{gap:8px}}
 
+/* Taller Emanuel — panel ampliado de datos demostrativos */
+.te-extra{margin:23px 0 45px}.te-extra-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:7px 0 15px}
+.te-extra-head h2{margin:0 0 4px!important;font-size:19px!important}.te-extra-head p{font-size:11px;color:#8da2bf;margin:0}
+.te-extra-pill{font-size:9px;font-weight:800;letter-spacing:.06em;padding:8px 10px;border-radius:50px;color:#5c88c9;background:#e8f1ff;white-space:nowrap}
+.te-extra-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:15px}
+.te-extra-stat{padding:19px!important;display:flex;flex-direction:column;gap:7px;min-width:0}
+.te-extra-stat small{color:#839ab8;font-size:11px}.te-extra-stat strong{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;color:#335e9c;letter-spacing:-.04em}.te-extra-stat span{font-size:10px;color:#a3b2c7}
+.te-extra-chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:15px 0}
+.te-extra-card{margin-bottom:15px!important;padding:21px!important}
+.te-extra-card h3{font-size:15px;color:#375d95;margin:0}
+.te-extra-bars{height:190px;display:flex;align-items:end;justify-content:space-around;gap:18px;border-bottom:1px solid #e7effc;margin-top:12px;padding:0 20px 12px}
+.te-extra-col{height:100%;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;gap:8px}
+.te-extra-bar{width:min(60px,75%);border-radius:11px 11px 4px 4px;transform-origin:bottom;animation:te-extra-grow .9s both}
+.te-extra-col small{font-size:11px;color:#8298b8}
+@keyframes te-extra-grow{from{transform:scaleY(.08);opacity:.2}to{transform:scaleY(1);opacity:1}}
+.te-extra-control{display:flex;gap:10px;margin:8px 0 15px}
+.te-extra-control input,.te-extra-control select{font-size:12px!important;max-width:280px!important}
+.te-extra-scroll{overflow:auto;max-height:480px}
+.te-extra-scroll table{width:100%;min-width:700px}
+.te-extra-scroll th,.te-extra-scroll td{padding:12px 11px!important;font-size:11px!important}
+.te-extra-scroll th{position:sticky;top:0;z-index:2}
+.te-extra-disclaimer{font-size:11px;color:#8298b8;background:#eaf2ff;padding:14px 16px;border-radius:13px}
+@media(max-width:1020px){.te-extra-stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.te-extra-chart-grid{grid-template-columns:1fr}.te-extra-head{flex-direction:column;align-items:flex-start}.te-extra-control{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.te-extra-bar{animation:none}}
+
 </style></head>
 <body>
 <section id="gate"><h1>TALLER EMANUEL</h1><p>Acceso seguro al sistema de repuestos</p>
@@ -419,4 +445,5 @@ observer.observe(document.getElementById('content'),{childList:true});
 setTimeout(drawCharts,500);
 })();
 </script>
+<script src="/demo-data.js"></script>
 </body></html>
